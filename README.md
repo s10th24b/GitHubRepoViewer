@@ -1,5 +1,5 @@
 # GitHubRepoViewer
-Application that find github repositories.
+Application that find github repositories. 😉
 ` Toy Project `
 
 ## What is this?
