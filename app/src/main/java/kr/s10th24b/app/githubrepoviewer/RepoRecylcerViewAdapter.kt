@@ -30,6 +30,9 @@ class RepoRecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 //        itemView.repoItemImageView = ""
         itemView.repoItemRepoNameTextView.text = item.title
         itemView.repoItemAuthorTextView.text = item.author
+        itemView.setOnClickListener {
+            Toast.makeText(itemView.context,item.title,Toast.LENGTH_SHORT).show()
+        }
     }
 
 
