@@ -7,9 +7,9 @@ Application that find github repositories. 😉
 This is the application that you can browse github repositories with some keywords.
 
 ## To-do List 
-- [X] Complete activity layout
-- [X] Make Recycler View
+- [X] Complete activity layout (done at 21.03.25)
+- [X] Make Recycler View (done at 21.03.26)
 - [ ] Take advantage of Room
-- [ ] RxJava
 - [ ] Introduce REST API
+- [ ] RxJava
 - [ ] Link to FireBase Server
