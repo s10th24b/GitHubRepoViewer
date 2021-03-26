@@ -14,6 +14,7 @@ This is the application where you can browse github repositories with some keywo
 - [ ] RxJava
 - [ ] Link to FireBase Server
 
+- - -
 ### Small To-do List 
 - [ ] Add click effect
 - [ ] Add Activity transition effect
