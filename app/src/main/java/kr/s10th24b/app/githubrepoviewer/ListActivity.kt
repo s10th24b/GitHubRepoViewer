@@ -5,23 +5,51 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Adapter
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Toast
+import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_list.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 class ListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
         var name = intent.getStringExtra("name").toString()
+
+        var searchIn = "repository"
+        repoRadioGroup.setOnCheckedChangeListener { group, checkedId ->
+            when (checkedId) {
+                R.id.repoRadioRepo -> {
+                    searchRepoEditText.hint = "repository name"
+                    searchIn = "repository"
+                }
+                R.id.repoRadioAuthor -> {
+                    searchRepoEditText.hint = "author name"
+                    searchIn = "author"
+                }
+                else -> {
+                    searchRepoEditText.hint = "author name"
+                    searchIn = "author"
+                }
+            }
+        }
+
+
         Toast.makeText(this, name, Toast.LENGTH_SHORT).show()
         searchRepoButton.setOnClickListener {
-            val repoName = searchRepoEditText.text.toString()
+            val searchText = searchRepoEditText.text.toString()
+            when (searchIn) {
+                "repository" -> {
 
+                }
+                "author" -> {
+
+                }
+                else -> {
+
+                }
+            }
         }
         var recyclerViewAdapter = RepoRecylcerViewAdapter()
         var repoData = loadRepoItems()

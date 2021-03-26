@@ -20,13 +20,13 @@
         app:srcCompat="@drawable/github_icon" />
 
     <Space
-        android:layout_width="20dp"
+        android:layout_width="10dp"
         android:layout_height="10dp"
         android:layout_gravity="center" />
 
     <TextView
         android:id="@+id/repoItemRepoNameTextView"
-        android:layout_width="220dp"
+        android:layout_width="225dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:ellipsize="none"
@@ -35,20 +35,20 @@
         android:text="Repo Name" />
 
     <Space
-        android:layout_width="20dp"
+        android:layout_width="10dp"
         android:layout_height="10dp"
         android:layout_gravity="center" />
 
     <TextView
         android:id="@+id/repoItemAuthorTextView"
-        android:layout_width="70dp"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
         android:text="Author" />
 
     <Space
-        android:layout_width="5dp"
+        android:layout_width="10dp"
         android:layout_height="10dp"
         android:layout_gravity="center" />
 
