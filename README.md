@@ -4,7 +4,7 @@ Application that find github repositories. ‍️
 ` Toy Project `
 
 ## What is this?
-This is the application that you can browse github repositories with some keywords.
+This is the application where you can browse github repositories with some keywords.
 
 ## To-do List 
 - [X] Complete activity layout (done at 21.03.25)
