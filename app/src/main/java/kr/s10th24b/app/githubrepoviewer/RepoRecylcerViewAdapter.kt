@@ -1,5 +1,6 @@
 package kr.s10th24b.app.githubrepoviewer
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.transition.Hold
 import kotlinx.android.synthetic.main.item_recycler.view.*
+import java.io.Serializable
 
 class RepoRecylcerViewAdapter() : RecyclerView.Adapter<RepoRecyclerViewHolder>() {
     var repoItems = mutableListOf<RepoItem>()
@@ -31,7 +33,12 @@ class RepoRecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
         itemView.repoItemRepoNameTextView.text = item.title
         itemView.repoItemAuthorTextView.text = item.author
         itemView.setOnClickListener {
-            Toast.makeText(itemView.context,item.title,Toast.LENGTH_SHORT).show()
+            val intent = Intent(itemView.context,ViewPagerActivity::class.java)
+//            intent.putExtra("repoItem",item) // Transfer Object as Serializable
+            intent.putExtra("image","")
+            intent.putExtra("repository",item.title)
+            intent.putExtra("author",item.author)
+            itemView.context.startActivity(intent)
         }
     }
 

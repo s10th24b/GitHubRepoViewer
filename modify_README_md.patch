@@ -1,0 +1,15 @@
+Index: README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- README.md	(revision 2724fb969942f49a2c39820a873db4aaa2cf2093)
++++ README.md	(date 1616767525047)
+@@ -14,6 +14,7 @@
+ - [ ] RxJava
+ - [ ] Link to FireBase Server
+ 
++- - -
+ ### Small To-do List 
+ - [ ] Add click effect
+ - [ ] Add Activity transition effect
