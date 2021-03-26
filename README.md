@@ -9,7 +9,7 @@ This is the application where you can browse github repositories with some keywo
 ## Big To-do List 
 - [X] Complete Activity Layout (done at 21.03.25)
 - [X] Make Recycler View (done at 21.03.26)
-- [ ] Make ViewPager and TabLayout
+- [X] Make ViewPager and TabLayout
 - [ ] Take Advantage of Room
 - [ ] Introduce REST API
 - [ ] RxJava
