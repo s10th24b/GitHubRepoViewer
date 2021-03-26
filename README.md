@@ -7,17 +7,17 @@ Application that find github repositories. ‍️
 This is the application where you can browse github repositories with some keywords.
 
 ## Big To-do List 
-- [X] Complete activity layout (done at 21.03.25)
+- [X] Complete Activity Layout (done at 21.03.25)
 - [X] Make Recycler View (done at 21.03.26)
 - [ ] Make ViewPager and TabLayout
-- [ ] Take advantage of Room
+- [ ] Take Advantage of Room
 - [ ] Introduce REST API
 - [ ] RxJava
 - [ ] Link to FireBase Server
 
 ----------------
 ### Small To-do List 
-- [ ] Add click effect
-- [ ] Add Activity transition effect
-- [ ] Make ui better
-- [ ] Modify image through REST API
+- [ ] Add Click Effect
+- [ ] Add activity Transition Effect
+- [ ] Make Ui Better
+- [ ] Modify Image Through REST API
