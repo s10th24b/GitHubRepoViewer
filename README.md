@@ -1,5 +1,6 @@
 # GitHubRepoViewer
 Application that find github repositories. 😉
+
 ` Toy Project `
 
 ## What is this?
@@ -7,7 +8,8 @@ This is the application that you can browse github repositories with some keywor
 
 ## To-do List 
 - [X] Complete activity layout
-- [ ] Make Recycler View
+- [X] Make Recycler View
 - [ ] Take advantage of Room
+- [ ] RxJava
 - [ ] Introduce REST API
 - [ ] Link to FireBase Server

@@ -37,4 +37,5 @@
         android:text="By s10th24b"
         app:layout_constraintBottom_toTopOf="@+id/githubImageView"
         app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
