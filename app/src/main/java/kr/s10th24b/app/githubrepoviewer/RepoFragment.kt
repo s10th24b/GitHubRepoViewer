@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_author.*
 import kotlinx.android.synthetic.main.fragment_repo.*
+import kotlinx.android.synthetic.main.fragment_repo.view.*
 
 /**
  * A simple [Fragment] subclass.
@@ -19,12 +20,14 @@ class RepoFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        Toast.makeText(context,repoFragmentTextView.text.toString(),Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onResume() {
+        super.onResume()
         arguments?.let {
-//            repoFragmentTextView.text = it.getString("pageType")
-//            repoFragmentTextView.text = "hello repository"
             Toast.makeText(context,it.getString("pageType"),Toast.LENGTH_SHORT).show()
         }
-//        Toast.makeText(context,repoFragmentTextView.text.toString(),Toast.LENGTH_SHORT).show()
     }
 
     override fun onCreateView(
@@ -32,7 +35,9 @@ class RepoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_repo, container, false)
+        val view =  inflater.inflate(R.layout.fragment_repo, container, false)
+        view.repoFragmentTextView.text = arguments?.getString("pageType")
+        return view
     }
 
     override fun onDestroy() {

@@ -19,5 +19,9 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("name","s10th24b")
             startActivity(intent)
         }
+        bys10th24bTextview.setOnClickListener {
+            val intent = Intent(this,SettingsActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

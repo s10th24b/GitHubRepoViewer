@@ -10,7 +10,7 @@ This is the application where you can browse github repositories with some keywo
 - [X] Complete Activity Layout (done at 21.03.25)
 - [X] Make Recycler View (done at 21.03.26)
 - [X] Make ViewPager and TabLayout
-- [ ] Take Advantage of Room
+- [ ] Take Advantage of ROOM
 - [ ] Introduce REST API
 - [ ] RxJava
 - [ ] Link to FireBase Server
@@ -18,6 +18,6 @@ This is the application where you can browse github repositories with some keywo
 ----------------
 ### Small To-do List 
 - [ ] Add Click Effect
-- [ ] Add activity Transition Effect
-- [ ] Make Ui Better
-- [ ] Modify Image Through REST API
+- [ ] Add Activity Transition Effect
+- [ ] Make UI Better
+- [ ] Add Dark Mode
