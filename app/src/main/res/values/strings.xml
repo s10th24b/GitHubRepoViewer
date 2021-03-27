@@ -3,15 +3,15 @@
     <string name="title_activity_settings">SettingsActivity</string>
 
     <!-- Preference Titles -->
-    <string name="messages_header">TBI</string>
-    <string name="sync_header">Dark Mode Settings</string>
+    <string name="profile_header">Profile</string>
+    <string name="darkmode_header">Dark Mode Settings</string>
 
     <!-- Messages Preferences -->
-    <string name="signature_title">TBI</string>
-    <string name="reply_title">TBI</string>
+    <string name="signature_title">Name</string>
+    <string name="github_title">GitHub Account</string>
 
     <!-- Sync Preferences -->
-    <string name="sync_title">Dark Mode</string>
+    <string name="darkmode_title">Dark Mode</string>
     <string name="attachment_title">TBI</string>
     <string name="attachment_summary_on">TBI
     </string>

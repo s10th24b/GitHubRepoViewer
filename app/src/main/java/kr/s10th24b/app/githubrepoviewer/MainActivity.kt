@@ -14,13 +14,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         githubImageView.setOnClickListener {
-            Toast.makeText(applicationContext,"Welcome to GithubRepoViewer",Toast.LENGTH_SHORT).show()
             val intent = Intent(this,ListActivity::class.java)
             intent.putExtra("name","s10th24b")
             startActivity(intent)
         }
-        bys10th24bTextview.setOnClickListener {
+        settingsImageView.setOnClickListener {
             val intent = Intent(this,SettingsActivity::class.java)
+            startActivity(intent)
+        }
+        historyImageview.setOnClickListener {
+            val intent = Intent(this,SearchHistoryActivity::class.java)
             startActivity(intent)
         }
     }

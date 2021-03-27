@@ -38,4 +38,24 @@
         app:layout_constraintBottom_toTopOf="@+id/githubImageView"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <ImageView
+        android:id="@+id/settingsImageView"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/githubRepoViewerTextview"
+        app:srcCompat="@drawable/settings" />
+
+    <ImageView
+        android:id="@+id/historyImageview"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settingsImageView"
+        app:srcCompat="@drawable/history" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

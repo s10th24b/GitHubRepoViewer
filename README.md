@@ -17,6 +17,7 @@ This is the application where you can browse github repositories with some keywo
 
 ----------------
 ### Small To-do List 
+- [ ] Add Search History
 - [ ] Add Click Effect
 - [ ] Add Activity Transition Effect
 - [ ] Make UI Better
