@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 import kotlinx.android.synthetic.main.activity_list.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -52,9 +53,11 @@ class ListActivity : AppCompatActivity() {
             }
 
             // save in search history
-            val sqliteHelper = SqliteHelper(this,"searchhistory",1)
-            val mSearchHistory = SearchHistory(null,searchRepoEditText.text.toString(),System.currentTimeMillis())
-            sqliteHelper.insertSearchHistory(mSearchHistory)
+            val roomHelper = Room.databaseBuilder(this,RoomHelper::class.java,"room_search_history")
+                .allowMainThreadQueries()
+                .build()
+            val mSearchHistory = RoomSearchHistory(searchRepoEditText.text.toString(),System.currentTimeMillis())
+            roomHelper.roomSearchHistoryDao().insert(mSearchHistory)
         }
         var recyclerViewAdapter = RepoRecylcerViewAdapter()
         var repoData = loadRepoItems()

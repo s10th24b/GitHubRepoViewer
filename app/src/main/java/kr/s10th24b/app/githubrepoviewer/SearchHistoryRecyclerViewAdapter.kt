@@ -7,15 +7,15 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.searchhistory_recycler.view.*
 import java.text.SimpleDateFormat
 
-class SearchHistoryRecyclerViewAdapter(sqlite_Helper: SqliteHelper) :
+class SearchHistoryRecyclerViewAdapter(room_helper: RoomHelper) :
     RecyclerView.Adapter<SearchHistoryRecyclerViewAdapter.SearchHistoryViewHolder>() {
     companion object {
-        var searchHistoryItems = mutableListOf<SearchHistory>()
+        var searchHistoryItems = mutableListOf<RoomSearchHistory>()
         lateinit var adapter: RecyclerView.Adapter<SearchHistoryViewHolder>
-        lateinit var sqliteHelper: SqliteHelper
+        lateinit var roomHelper: RoomHelper
     }
     init {
-        sqliteHelper = sqlite_Helper
+        roomHelper = room_helper
         adapter = this
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchHistoryViewHolder {
@@ -32,17 +32,17 @@ class SearchHistoryRecyclerViewAdapter(sqlite_Helper: SqliteHelper) :
     override fun getItemCount() = searchHistoryItems.size
 
     class SearchHistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        lateinit var mSearchHistory: SearchHistory
+        lateinit var mSearchHistory: RoomSearchHistory
         init {
             itemView.searchHistoryDelButton.setOnClickListener {
-                sqliteHelper.deleteSearchHistory(mSearchHistory)
+                roomHelper.roomSearchHistoryDao().delete(mSearchHistory)
                 searchHistoryItems.remove(mSearchHistory)
                 adapter.notifyDataSetChanged()
             }
         }
 
-        fun setItem(searchHistory: SearchHistory) {
-            itemView.searchHistoryNumberTextView.text = searchHistory.number.toString()
+        fun setItem(searchHistory: RoomSearchHistory) {
+            itemView.searchHistoryNumberTextView.text = searchHistory.no.toString()
             itemView.searchHistorySearchTextView.text = searchHistory.search
             val sdf = SimpleDateFormat("yyyy/MM/dd hh:mm")
             itemView.searchHistoryDateTimeTextView.text = sdf.format(searchHistory.dateTime)
