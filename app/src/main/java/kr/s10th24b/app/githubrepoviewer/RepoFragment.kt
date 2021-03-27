@@ -7,9 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import kotlinx.android.synthetic.main.fragment_author.*
-import kotlinx.android.synthetic.main.fragment_repo.*
-import kotlinx.android.synthetic.main.fragment_repo.view.*
+import kr.s10th24b.app.githubrepoviewer.databinding.FragmentRepoBinding
 
 /**
  * A simple [Fragment] subclass.
@@ -17,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_repo.view.*
  * create an instance of this fragment.
  */
 class RepoFragment : Fragment() {
+    lateinit var binding: FragmentRepoBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,9 +34,10 @@ class RepoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view =  inflater.inflate(R.layout.fragment_repo, container, false)
-        view.repoFragmentTextView.text = arguments?.getString("pageType")
-        return view
+//        val view =  inflater.inflate(R.layout.fragment_repo, container, false)
+        binding = FragmentRepoBinding.inflate(inflater, container, false)
+        binding.repoFragmentTextView.text = arguments?.getString("pageType")
+        return binding.root
     }
 
     override fun onDestroy() {

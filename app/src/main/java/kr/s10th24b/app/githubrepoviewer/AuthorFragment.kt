@@ -9,13 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import kotlinx.android.synthetic.main.fragment_author.*
-import kotlinx.android.synthetic.main.fragment_author.view.*
-import kotlinx.android.synthetic.main.fragment_repo.*
-import kotlinx.android.synthetic.main.fragment_repo.view.*
+import kr.s10th24b.app.githubrepoviewer.databinding.FragmentAuthorBinding
+import kr.s10th24b.app.githubrepoviewer.databinding.FragmentRepoBinding
 import java.io.File
 
 class AuthorFragment : Fragment() {
+    lateinit var binding: FragmentAuthorBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +34,9 @@ class AuthorFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_author, container, false)
-        view.authorFragmentTextView.text = arguments?.getString("pageType")
-        return view
+        binding = FragmentAuthorBinding.inflate(inflater, container, false)
+//        view.authorFragmentTextView.text = arguments?.getString("pageType")
+        return binding.root
     }
 
     override fun onDestroy() {

@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.contentValuesOf
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.searchhistory_recycler.view.*
+import kr.s10th24b.app.githubrepoviewer.databinding.SearchhistoryRecyclerBinding
 import java.text.SimpleDateFormat
 
 class SearchHistoryRecyclerViewAdapter(room_helper: RoomHelper, _context: Context) :
@@ -38,25 +38,27 @@ class SearchHistoryRecyclerViewAdapter(room_helper: RoomHelper, _context: Contex
     override fun getItemCount() = searchHistoryItems.size
 
     class SearchHistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        lateinit var binding: SearchhistoryRecyclerBinding
         lateinit var mSearchHistory: RoomSearchHistory
         init {
-            itemView.searchHistoryDelButton.setOnClickListener {
+            binding = SearchhistoryRecyclerBinding.bind(itemView)
+            binding.searchHistoryDelButton.setOnClickListener {
                 roomHelper.roomSearchHistoryDao().delete(mSearchHistory)
                 searchHistoryItems.remove(mSearchHistory)
                 adapter.notifyDataSetChanged()
             }
-            itemView.searchHistorySearchTextView.setOnClickListener {
+            binding.searchHistorySearchTextView.setOnClickListener {
                 val intent = Intent(itemView.context,ListActivity::class.java)
-                intent.putExtra("searchText",itemView.searchHistorySearchTextView.text.toString())
+                intent.putExtra("searchText",binding.searchHistorySearchTextView.text.toString())
                 context.startActivity(intent)
             }
         }
 
         fun setItem(searchHistory: RoomSearchHistory) {
-            itemView.searchHistoryNumberTextView.text = searchHistory.no.toString()
-            itemView.searchHistorySearchTextView.text = searchHistory.search
+            binding.searchHistoryNumberTextView.text = searchHistory.no.toString()
+            binding.searchHistorySearchTextView.text = searchHistory.search
             val sdf = SimpleDateFormat("yyyy/MM/dd hh:mm")
-            itemView.searchHistoryDateTimeTextView.text = sdf.format(searchHistory.dateTime)
+            binding.searchHistoryDateTimeTextView.text = sdf.format(searchHistory.dateTime)
             mSearchHistory = searchHistory
         }
     }

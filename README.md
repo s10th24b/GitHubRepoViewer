@@ -11,6 +11,7 @@ This is the application where you can browse github repositories with some keywo
 - [X] Make Recycler View (done at 21.03.26)
 - [X] Make ViewPager and TabLayout (done at 21.03.27)
 - [X] Take Advantage of SQLite & ROOM (done at 21.03.27)
+* androidx-kotlin-extensions -> viewBinding *
 - [ ] Introduce Retrofit for REST API
 - [ ] RxJava
 - [ ] Link to FireBase Server

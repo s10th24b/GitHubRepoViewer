@@ -1,23 +1,23 @@
 package kr.s10th24b.app.githubrepoviewer
 
-import android.database.sqlite.SQLiteOpenHelper
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.room.Room
-import kotlinx.android.synthetic.main.activity_search_history.*
-import kotlinx.android.synthetic.main.searchhistory_recycler.*
+import kr.s10th24b.app.githubrepoviewer.databinding.ActivitySearchHistoryBinding
 
 class SearchHistoryActivity : AppCompatActivity() {
+    lateinit var binding: ActivitySearchHistoryBinding
     lateinit var roomHelper: RoomHelper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search_history)
+//        setContentView(R.layout.activity_search_history)
+        binding = ActivitySearchHistoryBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         roomHelper = RoomHelper.getInstance(this)
         val adapter = SearchHistoryRecyclerViewAdapter(roomHelper,this)
         SearchHistoryRecyclerViewAdapter.searchHistoryItems = loadData(roomHelper)
-        recyclerSearchHistory.adapter = adapter
-        recyclerSearchHistory.layoutManager = LinearLayoutManager(this)
+        binding.recyclerSearchHistory.adapter = adapter
+        binding.recyclerSearchHistory.layoutManager = LinearLayoutManager(this)
     }
 
     override fun onResume() {

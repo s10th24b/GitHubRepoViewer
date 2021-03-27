@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kr.s10th24b.app.githubrepoviewer">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GitHubRepoViewer">
-        <activity android:name=".SearchHistoryActivity"></activity>
+        <activity android:name=".NetworkHTTPConnectionTestActivity"></activity>
+        <activity android:name=".SearchHistoryActivity" />
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />

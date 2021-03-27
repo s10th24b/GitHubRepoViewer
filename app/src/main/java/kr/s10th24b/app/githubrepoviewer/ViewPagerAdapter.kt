@@ -5,8 +5,6 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import kotlinx.android.synthetic.main.fragment_author.*
-import kotlinx.android.synthetic.main.fragment_repo.*
 
 class ViewPagerAdapter(fa: AppCompatActivity, repoItem: RepoItem) : FragmentStateAdapter(fa) {
     var fragments = mutableListOf<Fragment>()
@@ -25,11 +23,4 @@ class ViewPagerAdapter(fa: AppCompatActivity, repoItem: RepoItem) : FragmentStat
         }
         return fragments[position]
     }
-
-    fun setFragments(fragment: Fragment) {
-        fragment.authorFragmentTextView.text = item.author
-        fragment.repoFragmentTextView.text = item.title
-
-    }
-
 }
