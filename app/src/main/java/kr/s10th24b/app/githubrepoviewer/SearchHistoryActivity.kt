@@ -13,11 +13,8 @@ class SearchHistoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_history)
-        roomHelper = Room.databaseBuilder(this, RoomHelper::class.java, "room_search_history") // 3번째가 DB 이름.
-            .allowMainThreadQueries() // 이 옵션이 적용되지 않으면 앱이 동작을 멈춘다.
-            // Room 은 기본적으로 서브스레드에서 동작하도록 설계되어 있기 때문.
-            .build()
-        val adapter = SearchHistoryRecyclerViewAdapter(roomHelper)
+        roomHelper = RoomHelper.getInstance(this)
+        val adapter = SearchHistoryRecyclerViewAdapter(roomHelper,this)
         SearchHistoryRecyclerViewAdapter.searchHistoryItems = loadData(roomHelper)
         recyclerSearchHistory.adapter = adapter
         recyclerSearchHistory.layoutManager = LinearLayoutManager(this)

@@ -1,22 +1,28 @@
 package kr.s10th24b.app.githubrepoviewer
 
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.contentValuesOf
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.searchhistory_recycler.view.*
 import java.text.SimpleDateFormat
 
-class SearchHistoryRecyclerViewAdapter(room_helper: RoomHelper) :
+class SearchHistoryRecyclerViewAdapter(room_helper: RoomHelper, _context: Context) :
     RecyclerView.Adapter<SearchHistoryRecyclerViewAdapter.SearchHistoryViewHolder>() {
     companion object {
         var searchHistoryItems = mutableListOf<RoomSearchHistory>()
         lateinit var adapter: RecyclerView.Adapter<SearchHistoryViewHolder>
         lateinit var roomHelper: RoomHelper
+        lateinit var context: Context
     }
     init {
         roomHelper = room_helper
         adapter = this
+        context = _context
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchHistoryViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -38,6 +44,11 @@ class SearchHistoryRecyclerViewAdapter(room_helper: RoomHelper) :
                 roomHelper.roomSearchHistoryDao().delete(mSearchHistory)
                 searchHistoryItems.remove(mSearchHistory)
                 adapter.notifyDataSetChanged()
+            }
+            itemView.searchHistorySearchTextView.setOnClickListener {
+                val intent = Intent(itemView.context,ListActivity::class.java)
+                intent.putExtra("searchText",itemView.searchHistorySearchTextView.text.toString())
+                context.startActivity(intent)
             }
         }
 

@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         githubImageView.setOnClickListener {
             val intent = Intent(this,ListActivity::class.java)
-            intent.putExtra("name","s10th24b")
+//            intent.putExtra("name","s10th24b")
             startActivity(intent)
         }
         settingsImageView.setOnClickListener {
