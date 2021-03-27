@@ -10,7 +10,7 @@ import com.google.android.material.transition.Hold
 import kotlinx.android.synthetic.main.item_recycler.view.*
 import java.io.Serializable
 
-class RepoRecylcerViewAdapter() : RecyclerView.Adapter<RepoRecyclerViewHolder>() {
+class RepoRecylcerViewAdapter : RecyclerView.Adapter<RepoRecyclerViewHolder>() {
     var repoItems = mutableListOf<RepoItem>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoRecyclerViewHolder {
         // LayoutInflater 는 화면요소이므로 컨텍스트가 필요하고

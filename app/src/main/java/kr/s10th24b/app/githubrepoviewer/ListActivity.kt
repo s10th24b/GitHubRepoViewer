@@ -50,6 +50,11 @@ class ListActivity : AppCompatActivity() {
 
                 }
             }
+
+            // save in search history
+            val sqliteHelper = SqliteHelper(this,"searchhistory",1)
+            val mSearchHistory = SearchHistory(null,searchRepoEditText.text.toString(),System.currentTimeMillis())
+            sqliteHelper.insertSearchHistory(mSearchHistory)
         }
         var recyclerViewAdapter = RepoRecylcerViewAdapter()
         var repoData = loadRepoItems()
