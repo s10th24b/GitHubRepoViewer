@@ -13,7 +13,7 @@ This is the application where you can browse github repositories with some keywo
 - [X] Take Advantage of SQLite & ROOM (done at 21.03.27)
 - [X] Introduce Retrofit for REST API (done at 21.03.28)
 - [ ] RxJava
-- [ ] Link to FireBase Server
+- [ ] Link to FireBase Server and Add FCM
 
 ----------------
 ### Small To-do List 
