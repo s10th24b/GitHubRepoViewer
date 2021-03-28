@@ -18,7 +18,7 @@ This is the application where you can browse github repositories with some keywo
 ----------------
 ### Small To-do List 
 - [X] Add Search History (done at 21.03.27)
-~- [X] Use @Parcelize~
+- [X] ~Use @Parcelize (Too Many Null Objects)~
 - [ ] Add Search History Dropdown
 - [ ] Add Searching Progress Bar
 - [X] ROOM Singleton Pattern (done at 21.03.27)
