@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kr.s10th24b.app.githubrepoviewer.databinding.ItemRecyclerBinding
+import java.io.Serializable
 
 class RepoRecylcerViewAdapter(_context: Context) : RecyclerView.Adapter<RepoRecyclerViewHolder>() {
     lateinit var binding: ItemRecyclerBinding
@@ -38,9 +39,7 @@ class RepoRecyclerViewHolder(_binding: ItemRecyclerBinding) : RecyclerView.ViewH
         itemView.setOnClickListener {
             val intent = Intent(itemView.context,ViewPagerActivity::class.java)
 //            intent.putExtra("repoItem",item) // Transfer Object as Serializable
-            intent.putExtra("image","")
-            intent.putExtra("repository",item.name)
-            intent.putExtra("author",item.owner.login)
+            intent.putExtra("repoItem",item as Serializable)
             itemView.context.startActivity(intent)
         }
     }

@@ -1,5 +1,8 @@
 package kr.s10th24b.app.githubrepoviewer
 
+import com.google.gson.annotations.SerializedName
+import java.io.Serializable
+
 data class RepositoryItem(
     val archive_url: String,
     val archived: Boolean,
@@ -74,4 +77,4 @@ data class RepositoryItem(
     val url: String,
     val watchers: Int,
     val watchers_count: Int
-)
+) : Serializable

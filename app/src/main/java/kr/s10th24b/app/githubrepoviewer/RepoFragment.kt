@@ -25,7 +25,7 @@ class RepoFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         arguments?.let {
-            Toast.makeText(context,it.getString("pageType"),Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context,it.getString("pageType"),Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -36,7 +36,10 @@ class RepoFragment : Fragment() {
         // Inflate the layout for this fragment
 //        val view =  inflater.inflate(R.layout.fragment_repo, container, false)
         binding = FragmentRepoBinding.inflate(inflater, container, false)
-        binding.repoFragmentTextView.text = arguments?.getString("pageType")
+        val repoItem = arguments?.getSerializable("repoItem") as RepositoryItem
+        binding.repoFragmentRepoNameTextView.text = repoItem.name
+        binding.repoFragmentRepoDescriptionTextView.text = repoItem.description
+        binding.repoFragmentRepoLanguageTextView.text = repoItem.language
         return binding.root
     }
 

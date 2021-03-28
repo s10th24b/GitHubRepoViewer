@@ -13,11 +13,9 @@ class ViewPagerActivity : AppCompatActivity() {
 //        setContentView(R.layout.activity_view_pager)
         binding = ActivityViewPagerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        var image = intent.getStringExtra("image").toString()
-        var repositoryName = intent.getStringExtra("repository").toString()
-        var author = intent.getStringExtra("author").toString()
+        var repoItem = intent.getSerializableExtra("repoItem") as RepositoryItem
         var fragmentsList = loadData()
-        var viewPagerAdapter = ViewPagerAdapter(this, RepoItem(image, repositoryName, author))
+        var viewPagerAdapter = ViewPagerAdapter(this, repoItem)
         viewPagerAdapter.fragments = fragmentsList
         binding.viewPager.adapter = viewPagerAdapter
         val tabLayout = binding.repoAndAuthorTabLayout

@@ -5,8 +5,9 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import java.io.Serializable
 
-class ViewPagerAdapter(fa: AppCompatActivity, repoItem: RepoItem) : FragmentStateAdapter(fa) {
+class ViewPagerAdapter(fa: AppCompatActivity, repoItem: RepositoryItem) : FragmentStateAdapter(fa) {
     var fragments = mutableListOf<Fragment>()
     val item = repoItem
     override fun getItemCount() = fragments.size
@@ -18,8 +19,8 @@ class ViewPagerAdapter(fa: AppCompatActivity, repoItem: RepoItem) : FragmentStat
     override fun createFragment(position: Int): Fragment {
         Log.d("KHJ", "position: $position")
         when (position) {
-            0 -> fragments[position].arguments = Bundle().apply { putString("pageType",item.title) }
-            1 -> fragments[position].arguments = Bundle().apply { putString("pageType",item.author) }
+            0 -> fragments[position].arguments = Bundle().apply { putSerializable("repoItem",item as Serializable) }
+            1 -> fragments[position].arguments = Bundle().apply { putSerializable("repoItem",item as Serializable) }
         }
         return fragments[position]
     }
