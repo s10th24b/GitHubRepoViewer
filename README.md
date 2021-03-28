@@ -20,10 +20,12 @@ This is the application where you can browse github repositories with some keywo
 - [X] Add Search History (done at 21.03.27)
 - [X] ~Use @Parcelize (Too Many Null Objects)~
 - [ ] Add Search History Dropdown
+- [ ] Add Bottom Navigation Bar
+- [ ] Add Emoji Converter
 - [ ] Add Searching Progress Bar
 - [X] ROOM Singleton Pattern (done at 21.03.27)
 - [X] Migrate to Synthetic  ViewBinding
 - [ ] Add Click Effect
 - [ ] Add Activity Transition Effect
 - [ ] Make UI Better
-- [ ] Add Dark Mode
+- [ ] Add Dark/Light Mode
