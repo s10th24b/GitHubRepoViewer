@@ -2,6 +2,7 @@ package kr.s10th24b.app.githubrepoviewer
 
 import android.content.Context
 import android.content.Intent
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,7 +40,7 @@ class RepoRecyclerViewHolder(_binding: ItemRecyclerBinding) : RecyclerView.ViewH
         itemView.setOnClickListener {
             val intent = Intent(itemView.context,ViewPagerActivity::class.java)
 //            intent.putExtra("repoItem",item) // Transfer Object as Serializable
-            intent.putExtra("repoItem",item as Serializable)
+            intent.putExtra("repoItem",item as Parcelable)
             itemView.context.startActivity(intent)
         }
     }

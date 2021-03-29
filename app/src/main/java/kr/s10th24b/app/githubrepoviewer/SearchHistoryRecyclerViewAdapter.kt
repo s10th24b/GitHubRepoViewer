@@ -8,21 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.contentValuesOf
 import androidx.recyclerview.widget.RecyclerView
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.subjects.PublishSubject
 import kr.s10th24b.app.githubrepoviewer.databinding.SearchhistoryRecyclerBinding
 import java.text.SimpleDateFormat
 
-class SearchHistoryRecyclerViewAdapter(room_helper: RoomHelper, _context: Context) :
+class SearchHistoryRecyclerViewAdapter(room_helper: RoomHelper) :
     RecyclerView.Adapter<SearchHistoryRecyclerViewAdapter.SearchHistoryViewHolder>() {
     companion object {
+        val clickSubject = PublishSubject.create<String>()
+        val clickEvent: Observable<String> = clickSubject
         var searchHistoryItems = mutableListOf<RoomSearchHistory>()
         lateinit var adapter: RecyclerView.Adapter<SearchHistoryViewHolder>
         lateinit var roomHelper: RoomHelper
-        lateinit var context: Context
     }
     init {
         roomHelper = room_helper
         adapter = this
-        context = _context
+
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchHistoryViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -32,13 +35,13 @@ class SearchHistoryRecyclerViewAdapter(room_helper: RoomHelper, _context: Contex
 
     override fun onBindViewHolder(holder: SearchHistoryViewHolder, position: Int) {
         val searchHistoryItem = searchHistoryItems[position]
-        holder.setItem(searchHistoryItem)
+        holder.bind(searchHistoryItem)
     }
 
     override fun getItemCount() = searchHistoryItems.size
 
     class SearchHistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        lateinit var binding: SearchhistoryRecyclerBinding
+        var binding: SearchhistoryRecyclerBinding
         lateinit var mSearchHistory: RoomSearchHistory
         init {
             binding = SearchhistoryRecyclerBinding.bind(itemView)
@@ -47,14 +50,17 @@ class SearchHistoryRecyclerViewAdapter(room_helper: RoomHelper, _context: Contex
                 searchHistoryItems.remove(mSearchHistory)
                 adapter.notifyDataSetChanged()
             }
+//            binding.searchHistorySearchTextView.setOnClickListener {
+//                val intent = Intent(itemView.context,ListActivity::class.java)
+//                intent.putExtra("searchText",binding.searchHistorySearchTextView.text.toString())
+//                context.startActivity(intent)
+//            }
             binding.searchHistorySearchTextView.setOnClickListener {
-                val intent = Intent(itemView.context,ListActivity::class.java)
-                intent.putExtra("searchText",binding.searchHistorySearchTextView.text.toString())
-                context.startActivity(intent)
+                clickSubject.onNext(binding.searchHistorySearchTextView.text.toString())
             }
         }
 
-        fun setItem(searchHistory: RoomSearchHistory) {
+        fun bind(searchHistory: RoomSearchHistory) {
             binding.searchHistoryNumberTextView.text = searchHistory.no.toString()
             binding.searchHistorySearchTextView.text = searchHistory.search
             val sdf = SimpleDateFormat("yyyy/MM/dd hh:mm")

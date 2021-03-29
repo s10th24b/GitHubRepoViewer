@@ -54,6 +54,21 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
     implementation 'com.github.bumptech.glide:glide:4.+'
     kapt 'com.github.bumptech.glide:glide:4.+'
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:1.6.2"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:1.6.2"
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:1.6.2"
+    implementation "io.reactivex.rxjava3:rxjava:3.0.11"
+    implementation 'com.jakewharton.rxbinding4:rxbinding:4.0.0'
+    implementation 'com.jakewharton.rxbinding4:rxbinding-core:4.0.0'
+    implementation 'com.jakewharton.rxbinding4:rxbinding-appcompat:4.0.0'
+    implementation 'com.jakewharton.rxbinding4:rxbinding-drawerlayout:4.0.0'
+    implementation 'com.jakewharton.rxbinding4:rxbinding-leanback:4.0.0'
+    implementation 'com.jakewharton.rxbinding4:rxbinding-recyclerview:4.0.0'
+    implementation 'com.jakewharton.rxbinding4:rxbinding-slidingpanelayout:4.0.0'
+    implementation 'com.jakewharton.rxbinding4:rxbinding-swiperefreshlayout:4.0.0'
+    implementation 'com.jakewharton.rxbinding4:rxbinding-viewpager:4.0.0'
+    implementation 'com.jakewharton.rxbinding4:rxbinding-viewpager2:4.0.0'
+    implementation 'com.jakewharton.rxbinding4:rxbinding-material:4.0.0'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

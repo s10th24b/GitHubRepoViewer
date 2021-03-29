@@ -1,6 +1,7 @@
 package kr.s10th24b.app.githubrepoviewer
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -19,8 +20,8 @@ class ViewPagerAdapter(fa: AppCompatActivity, repoItem: RepositoryItem) : Fragme
     override fun createFragment(position: Int): Fragment {
         Log.d("KHJ", "position: $position")
         when (position) {
-            0 -> fragments[position].arguments = Bundle().apply { putSerializable("repoItem",item as Serializable) }
-            1 -> fragments[position].arguments = Bundle().apply { putSerializable("repoItem",item as Serializable) }
+            0 -> fragments[position].arguments = Bundle().apply { putParcelable("repoItem",item as Parcelable) }
+            1 -> fragments[position].arguments = Bundle().apply { putParcelable("repoItem",item as Parcelable) }
         }
         return fragments[position]
     }

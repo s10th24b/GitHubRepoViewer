@@ -3,6 +3,7 @@ package kr.s10th24b.app.githubrepoviewer
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.squareup.leakcanary.LeakCanary
 import kr.s10th24b.app.githubrepoviewer.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -11,6 +12,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        LeakCanary.install(application)
 //        setContentView(R.layout.activity_main)
         binding.githubImageView.setOnClickListener {
             val intent = Intent(this,ListActivity::class.java)

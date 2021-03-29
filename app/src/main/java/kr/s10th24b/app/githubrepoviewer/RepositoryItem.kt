@@ -1,8 +1,11 @@
 package kr.s10th24b.app.githubrepoviewer
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
 import java.io.Serializable
-
+@Parcelize
 data class RepositoryItem(
     val archive_url: String,
     val archived: Boolean,
@@ -51,7 +54,7 @@ data class RepositoryItem(
     val license: License,
     val merges_url: String,
     val milestones_url: String,
-    val mirror_url: Any,
+    val mirror_url: @RawValue Any? = null,
     val name: String,
     val node_id: String,
     val notifications_url: String,
@@ -77,4 +80,4 @@ data class RepositoryItem(
     val url: String,
     val watchers: Int,
     val watchers_count: Int
-) : Serializable
+) : Parcelable

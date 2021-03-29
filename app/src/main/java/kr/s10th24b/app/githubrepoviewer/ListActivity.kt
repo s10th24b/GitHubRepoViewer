@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import kr.s10th24b.app.githubrepoviewer.databinding.ActivityListBinding
@@ -61,6 +62,7 @@ class ListActivity : AppCompatActivity() {
             if ((searchIn != lastSearchIn || searchText != lastSearchText) && searchText.isNotBlank() && searchText != "null") {
                 lastSearchText = searchText
                 lastSearchIn = searchIn
+                binding.searchRepoProgressBar.visibility = View.VISIBLE
                 Toast.makeText(this, "clicked $searchText", Toast.LENGTH_SHORT).show()
                 when (searchIn) {
                     "repository" -> {
@@ -80,13 +82,14 @@ class ListActivity : AppCompatActivity() {
                 }
 
                 // save in search history
-                val roomHelper = RoomHelper.getInstance(this)
+                val roomHelper = RoomHelper.getInstance(applicationContext)
                 val mSearchHistory = RoomSearchHistory(
                     binding.searchRepoEditText.text.toString(),
                     System.currentTimeMillis()
                 )
                 roomHelper.roomSearchHistoryDao().insert(mSearchHistory)
             }
+            binding.searchRepoProgressBar.visibility = View.GONE
         }
 
         var s = intent.getStringExtra("searchText")
