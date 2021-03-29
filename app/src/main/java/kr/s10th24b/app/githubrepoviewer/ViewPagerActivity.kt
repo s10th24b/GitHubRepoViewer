@@ -13,7 +13,7 @@ class ViewPagerActivity : AppCompatActivity() {
 //        setContentView(R.layout.activity_view_pager)
         binding = ActivityViewPagerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        var repoItem = intent.getParcelableExtra<RepositoryItem>("repoItem") as RepositoryItem
+        var repoItem = intent.getSerializableExtra("repoItem") as RepositoryItem
         var fragmentsList = loadData()
         var viewPagerAdapter = ViewPagerAdapter(this, repoItem)
         viewPagerAdapter.fragments = fragmentsList

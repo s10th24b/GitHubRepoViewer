@@ -40,7 +40,7 @@ class RepoRecyclerViewHolder(_binding: ItemRecyclerBinding) : RecyclerView.ViewH
         itemView.setOnClickListener {
             val intent = Intent(itemView.context,ViewPagerActivity::class.java)
 //            intent.putExtra("repoItem",item) // Transfer Object as Serializable
-            intent.putExtra("repoItem",item as Parcelable)
+            intent.putExtra("repoItem",item as Serializable)
             itemView.context.startActivity(intent)
         }
     }

@@ -36,7 +36,7 @@ class RepoFragment : Fragment() {
         // Inflate the layout for this fragment
 //        val view =  inflater.inflate(R.layout.fragment_repo, container, false)
         binding = FragmentRepoBinding.inflate(inflater, container, false)
-        val repoItem = arguments?.getParcelable<RepositoryItem>("repoItem")  as RepositoryItem
+        val repoItem = arguments?.getSerializable("repoItem") as RepositoryItem
         binding.repoFragmentRepoNameTextView.text = repoItem.name
         binding.repoFragmentRepoDescriptionTextView.text = repoItem.description
         binding.repoFragmentRepoLanguageTextView.text = repoItem.language
