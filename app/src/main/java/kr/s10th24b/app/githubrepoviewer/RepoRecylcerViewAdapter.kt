@@ -44,6 +44,4 @@ class RepoRecyclerViewHolder(_binding: ItemRecyclerBinding) : RecyclerView.ViewH
             itemView.context.startActivity(intent)
         }
     }
-
-
 }

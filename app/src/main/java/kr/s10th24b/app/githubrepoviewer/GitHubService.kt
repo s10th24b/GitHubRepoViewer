@@ -1,6 +1,12 @@
 package kr.s10th24b.app.githubrepoviewer
 
+import io.reactivex.rxjava3.core.Observable
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -17,11 +23,40 @@ interface GitHubService {
 //    결국 두가지 버전 모두 클래스를 만들어야 했다.
 
     @GET("search/repositories")
-    fun repos(@Query("q") repo: String): Call<SearchRepositories>
+    fun getCallRepos(@Query("q") repo: String, @Query("page") page: Int): Call<SearchRepositories>
 
-    @GET("/search/repositories?q=tetris+&per_page=200")
+    @GET("search/repositories")
+    fun getObRepos(@Query("q") repo: String, @Query("page") page: Int): Observable<SearchRepositories>
+
+    @GET("search/repositories?q=tetris+&per_page=200")
     fun repos(): Call<SearchRepositories>
 
     @GET("users/{author}/repos")
-    fun authors(@Path("author") author: String): Call<List<RepositoryItem>>
+    fun getObAuthors(@Path("author") author: String): Observable<List<RepositoryItem>>
+
+    @GET("users/{author}/repos")
+    fun getCallAuthors(@Path("author") author: String): Call<List<RepositoryItem>>
+
+    companion object {
+        private const val BASE_URL = "https://api.github.com/"
+        private const val USER_ID = ""
+        private const val USER_PW = ""
+
+        fun create(): GitHubService {
+            val httpLoggingIntercepter = HttpLoggingInterceptor()
+            httpLoggingIntercepter.level = HttpLoggingInterceptor.Level.BODY
+
+            val client = OkHttpClient.Builder()
+                .addInterceptor(httpLoggingIntercepter)
+                .build()
+
+            val retrofit = Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+                .client(client)
+                .build()
+            return retrofit.create(GitHubService::class.java)
+        }
+    }
 }

@@ -12,6 +12,7 @@ import kr.s10th24b.app.githubrepoviewer.databinding.ActivitySearchHistoryBinding
 class SearchHistoryActivity : AppCompatActivity() {
     lateinit var binding: ActivitySearchHistoryBinding
     lateinit var roomHelper: RoomHelper
+    lateinit var adapter: SearchHistoryRecyclerViewAdapter
     private lateinit var compositeDisposable: CompositeDisposable
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,15 +20,15 @@ class SearchHistoryActivity : AppCompatActivity() {
         binding = ActivitySearchHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
         roomHelper = RoomHelper.getInstance(this)
-        val adapter = SearchHistoryRecyclerViewAdapter(roomHelper)
+        adapter = SearchHistoryRecyclerViewAdapter(roomHelper)
         SearchHistoryRecyclerViewAdapter.searchHistoryItems = loadData(roomHelper)
-        val searchHistoryRecyclerViewAdapterViewHolder = SearchHistoryRecyclerViewAdapter.clickEvent.subscribe{
+        val searchHistoryRecyclerViewAdapterViewHolderClickEvent = adapter.clickSubject.subscribe{
             val intent = Intent(this, ListActivity::class.java)
             intent.putExtra("searchText", it)
             startActivity(intent)
         }
         compositeDisposable = CompositeDisposable()
-        compositeDisposable.add(searchHistoryRecyclerViewAdapterViewHolder)
+        compositeDisposable.add(searchHistoryRecyclerViewAdapterViewHolderClickEvent)
         binding.recyclerSearchHistory.adapter = adapter
         binding.recyclerSearchHistory.layoutManager = LinearLayoutManager(this)
     }
@@ -37,7 +38,8 @@ class SearchHistoryActivity : AppCompatActivity() {
         SearchHistoryRecyclerViewAdapter.searchHistoryItems.addAll(
             roomHelper.roomSearchHistoryDao().getAll()
         )
-        SearchHistoryRecyclerViewAdapter.adapter.notifyDataSetChanged()
+//        SearchHistoryRecyclerViewAdapter.adapter.notifyDataSetChanged()
+        adapter.notifyDataSetChanged()
         super.onResume()
     }
 

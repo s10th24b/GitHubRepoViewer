@@ -50,13 +50,22 @@ dependencies {
     def room_version = "2.2.6"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
-    implementation "com.squareup.retrofit2:retrofit:2.9.0"
-    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
     implementation 'com.github.bumptech.glide:glide:4.+'
     kapt 'com.github.bumptech.glide:glide:4.+'
+
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation "com.squareup.retrofit2:adapter-rxjava3:2.9.0"
+
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.9.1"))
+    implementation 'com.squareup.okhttp3:okhttp'
+    implementation 'com.squareup.okhttp3:logging-interceptor'
+
     debugImplementation "com.squareup.leakcanary:leakcanary-android:1.6.2"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:1.6.2"
     debugImplementation "com.squareup.leakcanary:leakcanary-android:1.6.2"
+
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation "io.reactivex.rxjava3:rxjava:3.0.11"
     implementation 'com.jakewharton.rxbinding4:rxbinding:4.0.0'
     implementation 'com.jakewharton.rxbinding4:rxbinding-core:4.0.0'
@@ -69,6 +78,8 @@ dependencies {
     implementation 'com.jakewharton.rxbinding4:rxbinding-viewpager:4.0.0'
     implementation 'com.jakewharton.rxbinding4:rxbinding-viewpager2:4.0.0'
     implementation 'com.jakewharton.rxbinding4:rxbinding-material:4.0.0'
+
+    implementation("com.louiscad.splitties:splitties-fun-pack-android-base:3.0.0-beta01")
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
