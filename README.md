@@ -14,7 +14,7 @@ This is the application where you can browse github repositories with some keywo
 - [X] Introduce Retrofit for REST API (done at 21.03.28)
 - [X] Add OkHttp to Control Retrofit Easier
 - [ ] Make Service Asynchronous with RxJava & Other Rx's
-- [ ] Add Infinite Scroll to Receive More Data
+- [O] Add Infinite Scroll to Receive More Data
 - [ ] Preserve Data When Screen Rotates
 - [ ] Link to FireBase Server and Add FCM
 
