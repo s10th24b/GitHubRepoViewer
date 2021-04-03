@@ -13,43 +13,52 @@ class SearchHistoryActivity : AppCompatActivity() {
     lateinit var binding: ActivitySearchHistoryBinding
     lateinit var roomHelper: RoomHelper
     lateinit var adapter: SearchHistoryRecyclerViewAdapter
-    private lateinit var compositeDisposable: CompositeDisposable
+    private lateinit var mCompositeDisposable: CompositeDisposable
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_search_history)
         binding = ActivitySearchHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        roomHelper = RoomHelper.getInstance(this)
+        roomHelper = RoomHelper.getInstance(applicationContext)
         adapter = SearchHistoryRecyclerViewAdapter(roomHelper)
-        SearchHistoryRecyclerViewAdapter.searchHistoryItems = loadData(roomHelper)
-        val searchHistoryRecyclerViewAdapterViewHolderClickEvent = adapter.clickSubject.subscribe{
+        adapter.searchHistoryItems = loadData(roomHelper)
+        mCompositeDisposable = CompositeDisposable()
+        mCompositeDisposable.add(adapter.clickSubject.subscribe {
             val intent = Intent(this, ListActivity::class.java)
             intent.putExtra("searchText", it)
             startActivity(intent)
+        })
+        mCompositeDisposable.add(adapter.itemRemovedSubject.subscribe {
+            when (it.string) {
+                "remove" -> {
+                    roomHelper.roomSearchHistoryDao().delete(it.searchHistory)
+                    adapter.notifyItemRemoved(adapter.searchHistoryItems.indexOf(it.searchHistory))
+                    adapter.searchHistoryItems.remove(it.searchHistory)
+                }
+                else -> {
+
+                }
+            }
+        })
+        binding.recyclerSearchHistory.apply {
+            this.adapter = adapter
+            layoutManager = LinearLayoutManager(context)
         }
-        compositeDisposable = CompositeDisposable()
-        compositeDisposable.add(searchHistoryRecyclerViewAdapterViewHolderClickEvent)
-        binding.recyclerSearchHistory.adapter = adapter
-        binding.recyclerSearchHistory.layoutManager = LinearLayoutManager(this)
     }
 
     override fun onResume() {
-        SearchHistoryRecyclerViewAdapter.searchHistoryItems.clear()
-        SearchHistoryRecyclerViewAdapter.searchHistoryItems.addAll(
-            roomHelper.roomSearchHistoryDao().getAll()
-        )
-//        SearchHistoryRecyclerViewAdapter.adapter.notifyDataSetChanged()
+        adapter.searchHistoryItems.clear()
+        adapter.searchHistoryItems.addAll(roomHelper.roomSearchHistoryDao().getAll())
         adapter.notifyDataSetChanged()
         super.onResume()
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         Toast.makeText(this, "SearchHistoryActivity Destroyed!", Toast.LENGTH_SHORT).show()
-        compositeDisposable.dispose()
+        mCompositeDisposable.dispose()
+        super.onDestroy()
     }
 
-    fun loadData(roomHelper: RoomHelper): MutableList<RoomSearchHistory> {
+    private fun loadData(roomHelper: RoomHelper): MutableList<RoomSearchHistory> {
         return roomHelper.roomSearchHistoryDao().getAll()
     }
 }

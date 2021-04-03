@@ -12,7 +12,7 @@ This is the application where you can browse github repositories with some keywo
 - [X] Make ViewPager and TabLayout (done at 21.03.27)
 - [X] Take Advantage of SQLite & ROOM (done at 21.03.27)
 - [X] Introduce Retrofit for REST API (done at 21.03.28)
-- [ ] Add OkHttp for Control Retrofit Easier
+- [X] Add OkHttp to Control Retrofit Easier
 - [ ] Make Service Asynchronous with RxJava & Other Rx's
 - [ ] Add Infinite Scroll to Receive More Data
 - [ ] Preserve Data When Screen Rotates
@@ -25,7 +25,7 @@ This is the application where you can browse github repositories with some keywo
 - [ ] Add Search History Dropdown
 - [ ] Add Bottom Navigation Bar
 - [ ] Add Emoji Converter
-- [ ] Add Searching Progress Bar
+- [X] Add Searching Progress Bar Using OkHttp & RxJava
 - [X] ROOM Singleton Pattern (done at 21.03.27)
 - [X] Migrate from Synthetic to ViewBinding (done at 21.03.28)
 - [ ] Add Click Effect

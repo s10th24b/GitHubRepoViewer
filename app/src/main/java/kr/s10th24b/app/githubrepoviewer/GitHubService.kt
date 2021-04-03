@@ -1,7 +1,13 @@
 package kr.s10th24b.app.githubrepoviewer
 
+import android.util.Log
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.subjects.PublishSubject
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Response
+import okhttp3.internal.EMPTY_RESPONSE
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -26,7 +32,10 @@ interface GitHubService {
     fun getCallRepos(@Query("q") repo: String, @Query("page") page: Int): Call<SearchRepositories>
 
     @GET("search/repositories")
-    fun getObRepos(@Query("q") repo: String, @Query("page") page: Int): Observable<SearchRepositories>
+    fun getObRepos(
+        @Query("q") repo: String,
+        @Query("page") page: Int
+    ): Observable<SearchRepositories>
 
     @GET("search/repositories?q=tetris+&per_page=200")
     fun repos(): Call<SearchRepositories>
@@ -42,12 +51,60 @@ interface GitHubService {
         private const val USER_ID = ""
         private const val USER_PW = ""
 
-        fun create(): GitHubService {
-            val httpLoggingIntercepter = HttpLoggingInterceptor()
-            httpLoggingIntercepter.level = HttpLoggingInterceptor.Level.BODY
+        fun create(observer: PublishSubject<Boolean>): GitHubService {
+            val progressListener = object : ProgressListener {
+                var firstUpdate = true
+                override fun update(
+                    bytesRead: Long,
+                    contentLength: Long,
+                    done: Boolean,
+                    observer: PublishSubject<Boolean>
+                ) {
+                    if (done) {
+                        observer.onNext(done)
+                        Log.d("KHJ", "Progress Done.")
+                    } else {
+                        if (firstUpdate) {
+                            firstUpdate = false
+                            if (contentLength == -1L) {
+                                Log.d("KHJ", "content-length: unknown")
+                            } else Log.d("KHJ", "content-length: $contentLength")
+                        }
+                    }
+                    // 왜 자꾸 Content-Length 가 -1, 즉 unknown인지 검색해봤는데,
+                    // You won’t be able to get the progress if the header Content-Length is not set in the response.
+                    // 깃허브 API에서 제공하는 response에서 헤더에 Content-Length 항목이 설정되어 있지 않아서 그런 것이었다..
+                    // 아예 없다... 로딩바가 아니라 그냥 프로그레스 루프로 만족해야할듯.
+                    Log.d("KHJ", "contentLength: $contentLength")
+                    Log.d("KHJ", "bytesRead: $bytesRead")
+
+                    if (bytesRead != -1L) {
+                        Log.d("KHJ", "${100 * bytesRead / contentLength}% done\n")
+                    }
+                }
+            }
+
+            val httpLoggingInterceptor = HttpLoggingInterceptor()
+            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+
+            val networkInterceptor = Interceptor { chain ->
+                //                    val newRequest = chain.request().newBuilder().build()
+                //                    val response = chain.proceed(newRequest)
+                val originalResponse = chain.proceed(chain.request())
+                originalResponse.newBuilder()
+                    .body(
+                        ProgressResponseBody(
+                            originalResponse.body ?: EMPTY_RESPONSE,
+                            progressListener,
+                            observer
+                        )
+                    )
+                    .build()
+            }
 
             val client = OkHttpClient.Builder()
-                .addInterceptor(httpLoggingIntercepter)
+                .addInterceptor(httpLoggingInterceptor)
+                .addNetworkInterceptor(networkInterceptor)
                 .build()
 
             val retrofit = Retrofit.Builder()

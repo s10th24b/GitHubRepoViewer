@@ -61,9 +61,12 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp'
     implementation 'com.squareup.okhttp3:logging-interceptor'
 
+    implementation "com.squareup.okio:okio:2.3.0"
+
     debugImplementation "com.squareup.leakcanary:leakcanary-android:1.6.2"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:1.6.2"
     debugImplementation "com.squareup.leakcanary:leakcanary-android:1.6.2"
+
 
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation "io.reactivex.rxjava3:rxjava:3.0.11"
