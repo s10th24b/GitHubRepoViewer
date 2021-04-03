@@ -2,9 +2,12 @@ package kr.s10th24b.app.githubrepoviewer
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -62,7 +65,7 @@ class ListActivity : AppCompatActivity() {
                 }
             }
         }
-
+        val roomHelper = RoomHelper.getInstance(applicationContext)
         var recyclerViewAdapter = RepoRecylcerViewAdapter(applicationContext)
         binding.repoRecyclerView.apply {
             adapter = recyclerViewAdapter
@@ -78,6 +81,14 @@ class ListActivity : AppCompatActivity() {
                 )
             }, linearLayout, binding.searchRepoProgressBar))
         }
+
+        val mSearchHistory1 = roomHelper.roomSearchHistoryDao().getAll()
+        binding.searchRepoEditText.setAdapter(
+            ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,
+                mSearchHistory1.filter { it.search.startsWith(binding.searchRepoEditText.text) }
+                    .map { it.search }.distinct()
+            )
+        )
 
 
         binding.searchRepoButton.setOnClickListener {
@@ -124,7 +135,6 @@ class ListActivity : AppCompatActivity() {
 //                toast(childCount.toString())
 
                 // save in search history
-                val roomHelper = RoomHelper.getInstance(applicationContext)
                 val mSearchHistory = RoomSearchHistory(
                     binding.searchRepoEditText.text.toString(),
                     System.currentTimeMillis()
