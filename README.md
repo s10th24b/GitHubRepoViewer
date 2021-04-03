@@ -12,9 +12,9 @@ This is the application where you can browse github repositories with some keywo
 - [X] Make ViewPager and TabLayout (done at 21.03.27)
 - [X] Take Advantage of SQLite & ROOM (done at 21.03.27)
 - [X] Introduce Retrofit for REST API (done at 21.03.28)
-- [X] Add OkHttp to Control Retrofit Easier
-- [X] Make Service Asynchronous with RxJava & Other Rx's
-- [X] Add Infinite Scroll to Receive More Data
+- [X] Add OkHttp to Control Retrofit Easier (done at 21.04.02)
+- [X] Make Service Asynchronous with RxJava & Other Rx's (done at 21.04.01)
+- [X] Add Infinite Scroll to Receive More Data (done at 21.04.03)
 - [ ] Preserve Data When Screen Rotates
 - [ ] Link to FireBase Server and Add FCM
 
