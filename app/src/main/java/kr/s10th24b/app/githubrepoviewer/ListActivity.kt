@@ -29,8 +29,6 @@ class ListActivity : AppCompatActivity() {
         binding = ActivityListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
         mCompositeDisposable = CompositeDisposable()
 
         var progressObserver = PublishSubject.create<Boolean>()
@@ -105,7 +103,6 @@ class ListActivity : AppCompatActivity() {
                     false
                 ).repoItemProgressBar.visibility = View.VISIBLE
                 binding.repoRecyclerView.smoothScrollBy(0, binding.repoRecyclerView.top)
-//                toast("clicked $searchText")
 
                 when (searchIn) {
                     "repository" -> {
@@ -132,7 +129,6 @@ class ListActivity : AppCompatActivity() {
                     }
                 }
                 var childCount = binding.repoRecyclerView.childCount
-//                toast(childCount.toString())
 
                 // save in search history
                 val mSearchHistory = RoomSearchHistory(

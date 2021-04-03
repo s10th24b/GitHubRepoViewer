@@ -8,15 +8,13 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import kr.s10th24b.app.githubrepoviewer.databinding.SearchhistoryRecyclerBinding
 import java.text.SimpleDateFormat
 
-class SearchHistoryRecyclerViewAdapter(room_helper: RoomHelper) :
+class SearchHistoryRecyclerViewAdapter :
     RecyclerView.Adapter<SearchHistoryRecyclerViewAdapter.SearchHistoryViewHolder>() {
     var searchHistoryItems = mutableListOf<RoomSearchHistory>()
     var clickSubject: PublishSubject<String>
     var itemRemovedSubject: PublishSubject<SearchHistoryForSubject>
-    var roomHelper: RoomHelper
 
     init {
-        roomHelper = room_helper
         clickSubject = PublishSubject.create()
         itemRemovedSubject = PublishSubject.create()
     }
@@ -29,7 +27,7 @@ class SearchHistoryRecyclerViewAdapter(room_helper: RoomHelper) :
 
     override fun onBindViewHolder(holder: SearchHistoryViewHolder, position: Int) {
         val searchHistoryItem = searchHistoryItems[position]
-        holder.bind(searchHistoryItem, position, clickSubject, itemRemovedSubject)
+        holder.bind(searchHistoryItem, clickSubject, itemRemovedSubject)
     }
 
     override fun getItemCount() = searchHistoryItems.size
@@ -39,7 +37,6 @@ class SearchHistoryRecyclerViewAdapter(room_helper: RoomHelper) :
         var binding = SearchhistoryRecyclerBinding.bind(itemView)
         fun bind(
             searchHistory: RoomSearchHistory,
-            position: Int,
             clickSubject: PublishSubject<String>,
             itemRemovedSubject: PublishSubject<SearchHistoryForSubject>
         ) {
@@ -47,10 +44,9 @@ class SearchHistoryRecyclerViewAdapter(room_helper: RoomHelper) :
             binding.searchHistorySearchTextView.text = searchHistory.search
             val sdf = SimpleDateFormat("yyyy/MM/dd hh:mm")
             binding.searchHistoryDateTimeTextView.text = sdf.format(searchHistory.dateTime)
-            itemView
 
             binding.searchHistoryDelButton.setOnClickListener {
-                itemRemovedSubject.onNext(SearchHistoryForSubject("remove",position,searchHistory))
+                itemRemovedSubject.onNext(SearchHistoryForSubject("remove",searchHistory))
             }
             binding.searchHistorySearchTextView.setOnClickListener {
                 clickSubject.onNext(binding.searchHistorySearchTextView.text.toString())
@@ -58,5 +54,5 @@ class SearchHistoryRecyclerViewAdapter(room_helper: RoomHelper) :
         }
     }
 
-    data class SearchHistoryForSubject(val string: String, val position: Int, val searchHistory: RoomSearchHistory)
+    data class SearchHistoryForSubject(val string: String, val searchHistory: RoomSearchHistory)
 }

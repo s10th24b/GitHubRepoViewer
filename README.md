@@ -16,14 +16,12 @@ This is the application where you can browse github repositories with some keywo
 - [X] Make Service Asynchronous with RxJava & Other Rx's (done at 21.04.01)
 - [X] Add Infinite Scroll to Receive More Data (done at 21.04.03)
 - [ ] Preserve Data When Screen Rotates
-- [ ] Link to FireBase Server and Add FCM
 
 ----------------
 ### Small To-do List 
 - [X] Add Search History (done at 21.03.27)
 - [X] ~Use @Parcelize (parcelize can't be used with null) (tried at 21.03.28)~
 - [X] Add Search History Dropdown
-- [ ] Add Bottom Navigation Bar
 - [ ] Add Emoji Converter
 - [X] Add Searching Progress Bar Using OkHttp & RxJava
 - [X] ROOM Singleton Pattern (done at 21.03.27)

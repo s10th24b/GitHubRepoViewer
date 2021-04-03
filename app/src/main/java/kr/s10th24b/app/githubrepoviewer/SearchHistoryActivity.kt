@@ -19,8 +19,9 @@ class SearchHistoryActivity : AppCompatActivity() {
         binding = ActivitySearchHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
         roomHelper = RoomHelper.getInstance(applicationContext)
-        adapter = SearchHistoryRecyclerViewAdapter(roomHelper)
+        adapter = SearchHistoryRecyclerViewAdapter()
         adapter.searchHistoryItems = loadData(roomHelper)
+        binding.recyclerSearchHistory.adapter = adapter
         mCompositeDisposable = CompositeDisposable()
         mCompositeDisposable.add(adapter.clickSubject.subscribe {
             val intent = Intent(this, ListActivity::class.java)
