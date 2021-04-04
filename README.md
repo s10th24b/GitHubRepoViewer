@@ -1,7 +1,7 @@
 # GitHubRepoViewer 📑🕵️
 Application that find github repositories. ‍️ 
 
-` Toy Project `
+`Completed at 21.04.04 `
 
 ## What is this?
 This is the application where you can browse github repositories with some keywords.
