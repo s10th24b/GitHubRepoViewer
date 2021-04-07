@@ -6,7 +6,7 @@ Application that find github repositories. ‍️
 ## What is this?
 This is the application where you can browse github repositories with some keywords.
 
-## Big To-do List 
+## Primary To-do List 
 - [X] Complete Activity Layout (done at 21.03.25)
 - [X] Make Recycler View (done at 21.03.26)
 - [X] Make ViewPager and TabLayout (done at 21.03.27)
@@ -18,7 +18,7 @@ This is the application where you can browse github repositories with some keywo
 - [ ] Preserve Data When Screen Rotates
 
 ----------------
-### Small To-do List 
+### Secondary To-do List 
 - [X] Add Search History (done at 21.03.27)
 - [X] ~Use @Parcelize (parcelize can't be used with null) (tried at 21.03.28)~
 - [X] Add Search History Dropdown
