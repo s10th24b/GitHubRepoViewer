@@ -40,7 +40,7 @@ class ListActivity : AppCompatActivity() {
                 binding.searchRepoProgressBar.visibility = View.GONE
             })
 
-        val githubService = GitHubService.create(progressObserver)
+        val githubService = GitHubService.create(progressObserver).getInstance()
 
         var searchIn = "repository"
         var lastSearchIn = ""
